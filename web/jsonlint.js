@@ -781,8 +781,8 @@ jsonlint.parse = function(input) {
     try {
         dougJSONParse(input);
     } catch(e) {
-        console.log(e.message);
-        if(/Duplicate key|Bad string/.test(e.message)) {
+        console.error(e);
+        if(/Duplicate key|Bad string|Unexpected/.test(e.message)) {
             var lineNumber = input.substring(0, e.at).split('\n').length;
             throw SyntaxError(e.message + ' on line ' + lineNumber);
         }
